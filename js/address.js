@@ -6,7 +6,8 @@ new Vue({
     data:{
        limitNum:3,
        addressList:[],
-       currentIndex:0
+       currentIndex:0,
+       shippingMethod:1
     },
     mounted:function(){
        this.$nextTick(function(){
