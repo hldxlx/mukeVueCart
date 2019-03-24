@@ -18,7 +18,7 @@ var vm = new Vue({
     },
     mounted:function(){
         this.$nextTick(function () {
-            // 代码保证 this.$el 在 document 中
+            // 代码保证 this.$el 在 document 中(即确保vue实例已经插入到dom节点里面)
             this.cartView();
         })
 
