@@ -5,8 +5,11 @@ var vm = new Vue({
    el:"#app",
     data:{
         totalMoney:0,
+        totalPrice:0,
         productList:[],
-        checkAllFlag:false
+        checkAllFlag:false,
+        delFlag:false,
+        curProduct:''
     },
     filters:{
         formatMoney:function(value){
@@ -43,6 +46,7 @@ var vm = new Vue({
                     product.productQuantity =1;
                 }
             }
+            this.calcTotalPrice();
         },
         selectedProduct:function(item){
             //typeof 判断一个对象的变量是否存在
@@ -52,6 +56,7 @@ var vm = new Vue({
             }else{
                 item.checked = !item.checked;
             }
+            this.calcTotalPrice();
         },
         checkAll:function(flag){
             this.checkAllFlag = flag;
@@ -64,7 +69,26 @@ var vm = new Vue({
                     item.checked = _this.checkAllFlag;
                 }
             });
+            this.calcTotalPrice();
+        },
 
+        calcTotalPrice:function(){
+            var _this = this;
+            _this.totalPrice = 0;
+            this.productList.forEach(function (item,index) {
+                if(item.checked == true){
+                    _this.totalPrice += item.productPrice*item.productQuantity;
+                }
+            });
+        },
+        delConfirm:function (item) {
+            this.delFlag = true;
+            this.curProduct = item;
+        },
+        delProduct:function(){
+            var index = this.productList.indexOf(this.curProduct);
+            this.productList.splice(index,1);
+            this.delFlag = false;
         }
     }
 

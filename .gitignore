@@ -1,3 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 # dependencies
 /node_modules
+
+# https://www.imooc.com/learn/796 使用vue2.0实现购物车和地址选配功能
